@@ -230,7 +230,7 @@ class WSRPC {
 				let func = self.routes[data.method];
 
 				if (self.asyncRoutes[data.method])
-					return func.apply(deferred, [data.params]);
+					return func.apply(deferred, [data]);
 
 				function badPromise() {
 					throw new Error(
@@ -244,7 +244,7 @@ class WSRPC {
 				};
 
 				try {
-					deferred.resolve(func.apply(promiseMock, [data.params]));
+					deferred.resolve(func.apply(promiseMock, [data]));
 				} catch (e) {
 					deferred.reject(e);
 					console.error(e);

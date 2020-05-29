@@ -3,7 +3,7 @@ build:
 
 	npm i
 	npm audit
-	npx typescript --strict wsrpc.d.ts
+	npx typescript --strict wsrpc.es6.d.ts
 	npx rollup -c rollup.config.js
 	npx uglify-js \
 			-c --source-map --in-source-map dist/wsrpc.js.map \

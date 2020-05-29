@@ -2,7 +2,7 @@
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = global || self, global.WSRPC = factory());
-}(this, function () { 'use strict';
+}(this, (function () { 'use strict';
 
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
@@ -229,7 +229,7 @@
           }));
         });
         var func = self.routes[data.method];
-        if (self.asyncRoutes[data.method]) return func.apply(deferred, [data.params]);
+        if (self.asyncRoutes[data.method]) return func.apply(deferred, [data]);
 
         function badPromise() {
           throw new Error("You should register route with async flag.");
@@ -241,7 +241,7 @@
         };
 
         try {
-          deferred.resolve(func.apply(promiseMock, [data.params]));
+          deferred.resolve(func.apply(promiseMock, [data]));
         } catch (e) {
           deferred.reject(e);
           console.error(e);
@@ -422,5 +422,5 @@
 
   return WSRPC;
 
-}));
+})));
 //# sourceMappingURL=wsrpc.js.map
